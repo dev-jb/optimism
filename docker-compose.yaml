@@ -1,6 +1,7 @@
 version: '3'
 services:
   op-node:
+    container_name: op-node
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,6 +19,7 @@ services:
       - 8547:8547
 
   op-batcher:
+    container_name: op-batcher
     build:
       context: .
       dockerfile: Dockerfile
@@ -33,6 +35,7 @@ services:
       - 8548:8548
 
   op-proposer:
+    container_name: op-proposer
     build:
       context: .
       dockerfile: Dockerfile
