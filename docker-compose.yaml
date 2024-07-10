@@ -14,6 +14,8 @@ services:
     entrypoint: /app/op-node.sh
     networks:
       - op-network
+    ports:
+      - 8547:8547
 
   op-batcher:
     build:
@@ -27,6 +29,8 @@ services:
     entrypoint: /app/op-batcher.sh
     networks:
       - op-network
+    ports:
+      - 8548:8548
 
   op-proposer:
     build:
@@ -40,6 +44,8 @@ services:
     entrypoint: /app/op-proposer.sh
     networks:
       - op-network
+    ports:
+      - 8560:8560
 
 networks:
   op-network:
