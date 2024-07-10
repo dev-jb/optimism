@@ -1,0 +1,45 @@
+version: '3'
+services:
+  op-node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: op-node
+    volumes:
+      - ./scripts/op-node.sh:/app/op-node.sh
+      - ./jwt.txt:/app/jwt.txt
+      - ./rollup.json:/app/rollup.json
+    env_file:
+      - .env
+    entrypoint: /app/op-node.sh
+    networks:
+      - op-network
+
+  op-batcher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: op-batcher
+    volumes:
+      - ./scripts/op-batcher.sh:/app/op-batcher.sh
+    env_file:
+      - .env
+    entrypoint: /app/op-batcher.sh
+    networks:
+      - op-network
+
+  op-proposer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: op-proposer
+    volumes:
+      - ./scripts/op-proposer.sh:/app/op-proposer.sh
+    env_file:
+      - .env
+    entrypoint: /app/op-proposer.sh
+    networks:
+      - op-network
+
+networks:
+  op-network:
